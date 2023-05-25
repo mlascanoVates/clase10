@@ -14,14 +14,15 @@ public class GeneradorNumero {
         TreeSet<Integer> seisNumeros= new TreeSet<>();
         Random r= new Random();
         int aux=0;
-        for(int i=0; seisNumeros.size()!=4 ; i++){
-            aux= r.nextInt(1,7);
+        while(seisNumeros.size()<6){
+            aux= r.nextInt(1,15);
             seisNumeros.add(aux);
-          //  System.out.println(aux);
         }
         return seisNumeros;
         }
 }
+
+
 
 
 
