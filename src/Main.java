@@ -1,4 +1,4 @@
-import java.util.HashSet;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,76 +6,55 @@ public class Main {
         //hacer con treset
 
         Juego juegoNuevo=new Juego();
-        Boleta boletaNueva= new Boleta();
         GeneradorNumero g= new GeneradorNumero();
 
         Boleta ganadora= new Boleta();
 
 
-        //generador 100 boletas
-        for(int i=0; i<50; i++){
+        //PUNTO 1 generador 100 boletas
+        for(int i=0; i<1000; i++){
+            Boleta boletaNueva= new Boleta();
             boletaNueva.setBoleta(g.devolver6());
-            juegoNuevo.addBoleta(boletaNueva);
-            System.out.print("[");
-            for(Integer in: boletaNueva.getBoleta()){
-                System.out.print( + in+",");
-            }
-        System.out.println("]");
-        }
-
-
-        //COMPARAR DOS ARREGLOS Y VER SI TIENE MISMOS NUMEROS
-        //Si no existe el arreglo, agregar boleta
-
-
-        //Hacer un juego
-      //  HashSet<Integer> sorteo6= new HashSet<>();
-
-
-     /*   for(int i=0; i<100; i++){
-            sorteo6= juegoNuevo.sortearPrimeros6();
-            for(Integer juego: sorteo6) {
-                System.out.print(juego.intValue() +" ");
-            }
-            System.out.println();
-        }
-
-
-        while (ganadora==null) {
-            ganadora = juegoNuevo.sorteoCompleto();
-            if (ganadora == null) {
-                System.out.println("no se encontraron coincidencias");
-            } else {
-                for (Integer b : ganadora.getBoleta()) {
-                    System.out.print("GANADOR: " + b.intValue() + " ");
+            if(juegoNuevo.getGrupoBoletas().size()>0){
+                boolean aux=false;
+                for(Boleta b: juegoNuevo.getGrupoBoletas()){
+                    aux= b.comparaBoletas(boletaNueva);
+                    if (aux) break;
                 }
+                if(!aux){
+                    juegoNuevo.addBoleta(boletaNueva);
+                    System.out.println("se generan las boletas"+boletaNueva.getBoleta());
+                }
+                else {}
             }
-        }*/
-
-        Boleta prueba= new Boleta();
-        prueba.setBoleta(g.devolver6());
-
-        System.out.println("GANADORA ES: ");
-        for(Integer on: prueba.getBoleta()){
-            System.out.print( on+",");
+            else if (juegoNuevo.getGrupoBoletas().isEmpty()){ juegoNuevo.addBoleta(boletaNueva);
+                System.out.println("Primer boleta 1"+boletaNueva.getBoleta());
+                }
         }
 
+        System.out.println("Tamaño de juego: "+ juegoNuevo.getGrupoBoletas().size());
 
-        System.out.println("Fin ganadora");
-        int f=0;
-        int k=0;
-        //comparar y obtener ganador
 
-        for(Boleta bu: juegoNuevo.getGrupoBoletas()){
-                if(prueba.sonIguales(bu))
-                {
-                    System.out.println(k +"GANADOR: " +bu.getBoleta());
-                }
-                else {System.out.println(f + " Aun no hay ganador");
-                }
-                f++;
-                k++;
+        //Prueba: boleta ganadora
+        Boleta boletaGanadora= new Boleta();
+        juegoNuevo.setBoletaGanadora(boletaGanadora);
+        juegoNuevo.sortearPrimeros6();
+       //  juegoNuevo.verificarGanador(juegoNuevo.getBoletaGanadora());
+        int i=0;
+        System.out.println("empty "+ juegoNuevo.ganadores1.isEmpty());
+        while (juegoNuevo.ganadores1.isEmpty()){
+            System.out.println("sorteada: " + juegoNuevo.getBoletaGanadora().getBoleta());
+        boolean auxiliar= juegoNuevo.verificarGanador(juegoNuevo.getBoletaGanadora());
+            System.out.println("Auxi" + auxiliar);
+        if (auxiliar){
+            System.out.println("empty "+ juegoNuevo.ganadores1.isEmpty());
+            for (Boleta bb: juegoNuevo.ganadores1){
+                i++;
+                System.out.println(i+ ": "+ bb.getBoleta());
+            }
         }
+        }
+
 
     }
 }
