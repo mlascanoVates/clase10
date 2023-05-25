@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Boleta {
-    TreeSet<Integer> boleta= new TreeSet<>();
+    TreeSet<Integer> boleta;
 
     public Boleta() {
         boleta= new TreeSet<>();
@@ -17,50 +15,41 @@ public class Boleta {
         this.boleta = boleta;
     }
 
+
+    //Duda se agrega int o Integer
+    public void addUnNumero(int numero){
+        boleta.add(numero);
+    }
     //PONER LOS NUMEROS DE LA BOLETA DE MENOR A MAYOR, para comparar
     //UN HASHSET NO SE PUEDE ORDER
     public void ordenarBoleta(){
 
     }
 
-    //recorrer Boleta
-    public boolean sonIguales(Boleta a){
-        int acierto=0;
-        //    if(this.getBoleta().containsAll(a.getBoleta())){
-      //      return true;
-      //  }
+import java.util.*;
 
-        for (Integer i :a.getBoleta()){
-            for (Integer in: this.getBoleta()){
-                if(i.equals(in))
-                {
-                    acierto++;
-                    System.out.println("Acierto" + acierto);
-                }
-            }
-        }
+public class Boleta {
+    TreeSet<Integer> boleta;
 
-        System.out.println("QUEDA " + this.getBoleta().containsAll(a.getBoleta()));
-        if(this.getBoleta().containsAll(a.getBoleta())){
-            System.out.println("ENTRA");
-                    /*
-                    System.out.println("VALOR B:" +b.intValue());
-                    System.out.println("VALOR G:" +g.intValue());
-                    acierto++;
-                    System.out.println("acierto: " + acierto);*/
-
-
-            return true;
-                }
-
-        return false;
-     }
-
-
-    @Override
-    public String toString() {
-        return "Boleta{" +
-                "boleta=" + boleta +
-                '}';
+    public Boleta() {
+        boleta= new TreeSet<>();
     }
-}
+
+    public TreeSet<Integer> getBoleta() {
+        return boleta;
+    }
+
+    public void setBoleta(TreeSet<Integer> boleta) {
+        this.boleta = boleta;
+    }
+
+
+    //Duda se agrega int o Integer
+    public void addUnNumero(int numero){
+        boleta.add(numero);
+    }
+    //PONER LOS NUMEROS DE LA BOLETA DE MENOR A MAYOR, para comparar
+    //UN HASHSET NO SE PUEDE ORDER
+    public void ordenarBoleta(){
+
+    }
